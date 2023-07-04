@@ -6,18 +6,19 @@ import requests
 import json
 import smtplib
 import time
+import os
 
 # connect to API
 url = "https://api.etherscan.io/api"
 address = "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
-api_key = "BH4T4NQQEVG3B6J8QEMAA72FBW86VSB5U3"
+API_KEY = os.getenv("API_KEY")
 
 params = {
     "module": "account",
     "action": "balance",
     "address": address,
     "tag": "latest",
-    "apikey": api_key,
+    "apikey": API_KEY,
 }
 
 prev_bal = None
