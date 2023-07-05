@@ -29,6 +29,7 @@ prev_bal = None
 while True:
     response = requests.get(url, params=params)
     data = response.json()
+    assert 'result' in data, 'API response has changed: no "result" field.' #assert that 'result' still in api dictionary
     current_bal = float(data["result"]) / 10**18
     print(f"Current Balance: {current_bal} ETH")
 
@@ -38,4 +39,4 @@ while True:
 
     prev_bal = current_bal
 
-    time.sleep(60) #polling API every 60s
+    time.sleep(5) #polling API every 60s
