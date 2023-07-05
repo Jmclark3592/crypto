@@ -5,13 +5,16 @@
 import requests
 import json
 import smtplib
+from email.message import EmailMessage
 import time
 import os
+
 
 # connect to API
 url = "https://api.etherscan.io/api"
 address = "0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe"
 API_KEY = os.getenv("API_KEY")
+
 
 params = {
     "module": "account",
@@ -31,9 +34,8 @@ while True:
 
     if prev_bal is not None and prev_bal - current_bal >= 10000:
         print("Sending alert - will replace with actual alert")
-        # configure to send to my email or SMS text
-        # maybe use smtplib for email
+        # configure to send a text or email 
 
     prev_bal = current_bal
 
-    time.sleep(60)
+    time.sleep(60) #polling API every 60s
